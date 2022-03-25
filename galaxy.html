@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #main {
+            width: 100px;
+            height: 100px;
+            position: fixed;
+        }
+
+        body {
+            background: -webkit-linear-gradient(to top, #283E51, #0A2342);
+            background: linear-gradient(to top, #283E51, #0A2342);
+            background: -olinear-gradient(to top, #283E51, #0A2342);
+            height: 100vh;
+            font-size: 0.7rem;
+            font-family: Arial, Helvetica, sans-serif
+        }
+
+        .rotate90 {
+            transform: rotate(90deg);
+        }
+
+        .rotate45 {
+            transform: rotate(45deg);
+        }
+
+        .rotate135 {
+            transform: rotate(135deg);
+        }
+
+        .star {
+            position: fixed;
+            display: inline-block;
+            height: 50px;
+            width: 2px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 50%);
+        }
+
+        .star1 {
+            position: fixed;
+            display: inline-block;
+            width: 50px;
+            height: 2px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 50%);
+        }
+
+
+        @keyframes myAnimation {
+            0% {
+                transform: scale(1.0);
+                -webkit-transform: scale(1.0);
+            }
+
+
+            50% {
+                transform: scale(1.5);
+                -webkit-transform: scale(1.5);
+            }
+
+            100% {
+                transform: scale(1);
+                -webkit-transform: scale(1);
+            }
+        }
+
+        @keyframes myAnimation1 {
+            0% {
+                transform: rotate(90deg) scale(1.0);
+                -webkit-transform: rotate(90deg) scale(1.0);
+            }
+
+
+            30% {
+                transform: rotate(90deg) scale(1.5);
+                -webkit-transform: rotate(90deg) scale(1.5);
+            }
+
+            100% {
+                transform: rotate(90deg) scale(1);
+                -webkit-transform: rotate(90deg) scale(1);
+            }
+        }
+
+        .inputContainer {
+            border: 1px solid #c2c9d1;
+            background: rgb(136 146 156);
+            width: fit-content;
+            padding: 5px;
+            bottom: 10px;
+            position: fixed;
+        }
+    </style>
+</head>
+
+<body onload="start()">
+    <div id="container">
+        <div id="main">
+            <div class="star"> </div>
+            <div class="star"></div>
+            <div class="star rotate45"> </div>
+            <div class="star rotate135"> </div>
+        </div>
+
+    </div>
+    <div class='inputContainer'>
+        Number of Stars: (Range: 1-1000) <input value="100" id='starCount' type='number' min="1" max="1000" />
+        <button onclick="start()">Apply</button>
+    </div>
+
+</body>
+
+<script>
+    function start()
+    {
+        const starCount = document.getElementById('starCount').value;
+
+        const star = document.getElementById('main')
+        document.getElementById('container').innerHTML = '';
+        document.getElementById('container').append(star);
+
+        star.children[0].style.animation = "myAnimation 1s  ease-in-out infinite";
+        star.children[1].style.animation = "myAnimation1 1s  ease-in-out infinite";
+        const main = document.getElementById('main')
+
+        for (let i = 0; i < starCount; i++)
+        {
+            const main1 = main.cloneNode(true)
+            main1.style.transform = "scale(" + Math.random() + ")"
+            main1.style.opacity = Math.random()
+            setTimeout(() =>
+            {
+                document.getElementById('container').appendChild(main1)
+            }, Math.random());
+
+            main1.style.top = Math.floor(Math.random() * window.innerHeight) + 'px'
+            main1.style.left = Math.floor(Math.random() * window.innerWidth) + 'px'
+        }
+    }
+</script>
+
+</html>
