@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="./styles.css" />
+    <script src="./stars.js"></script>
+
+    <title>Solar System</title>
+    <style>
+        @font-face {
+            font-family: myFirstFont;
+            src: url('./nasalization-rg.otf');
+        }
+
+        #main {
+            width: 100px;
+            height: 100px;
+            position: fixed;
+        }
+
+        body {
+
+            background: -webkit-linear-gradient(to top, #031423, #02162e);
+            background: linear-gradient(to top, #031423, #02162e);
+            background: -olinear-gradient(to top, #031423, #02162e);
+
+            height: 100vh;
+
+            font-family: 'Arial Narrow', Arial, sans-serif;
+
+            margin: 0
+        }
+
+        .rotate90 {
+            transform: rotate(90deg);
+        }
+
+        .rotate45 {
+            transform: rotate(45deg);
+        }
+
+        .rotate135 {
+            transform: rotate(135deg);
+        }
+
+        .star {
+            position: fixed;
+            display: inline-block;
+            height: 50px;
+            width: 2px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 50%);
+        }
+
+        .star1 {
+            position: fixed;
+            display: inline-block;
+            width: 50px;
+            height: 2px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 50%);
+        }
+
+
+        @keyframes myAnimation {
+            0% {
+                transform: scale(1.0);
+                -webkit-transform: scale(1.0);
+            }
+
+
+            50% {
+                transform: scale(1.5);
+                -webkit-transform: scale(1.5);
+            }
+
+            100% {
+                transform: scale(1);
+                -webkit-transform: scale(1);
+            }
+        }
+
+        @keyframes myAnimation1 {
+            0% {
+                transform: rotate(90deg) scale(1.0);
+                -webkit-transform: rotate(90deg) scale(1.0);
+            }
+
+
+            30% {
+                transform: rotate(90deg) scale(1.5);
+                -webkit-transform: rotate(90deg) scale(1.5);
+            }
+
+            100% {
+                transform: rotate(90deg) scale(1);
+                -webkit-transform: rotate(90deg) scale(1);
+            }
+        }
+
+        .inputContainer {
+            border: 1px solid #c2c9d1;
+            background: rgb(136 146 156);
+            width: fit-content;
+            padding: 5px;
+            bottom: 10px;
+            position: fixed;
+        }
+
+        #sun {
+
+            margin: 0 auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, calc(-50% - 100px));
+            height: 400px;
+            width: 400px;
+            background: #ffd200;
+            border-radius: 50%;
+            -webkit-box-shadow: 0px 0px 300px 50px rgb(255 234 0);
+            -moz-box-shadow: 0px 0px 300px 50px rgb(255, 234, 0);
+            box-shadow: 0px 0px 300px 50px rgb(255 234 0);
+
+        }
+
+        #sunRed {
+            margin: 0 auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, calc(-50% - 100px));
+            height: 400px;
+            width: 400px;
+            background: #ffd200;
+            border-radius: 50%;
+            -moz-box-shadow: inset 0 0 50px #ff6d00;
+            -webkit-box-shadow: inset 0 0 50px #ff6d00;
+            box-shadow: inset 0 0 50px #ff4f00;
+        }
+
+        #orbit {
+
+            margin: 0 auto;
+            position: absolute;
+            top: calc(50% - 30px);
+            left: calc(50% - 200px);
+            height: 140px;
+            width: 400px;
+            border: solid #0081ff59;
+            border-radius: 50%;
+            transform: rotate(-9deg);
+
+
+        }
+
+        #sunContainer {
+            height: 100vh;
+            position: fixed;
+            /* margin-left: -100px; */
+        }
+
+        .infoModal {
+            display: block;
+            border: 1px solid black;
+            min-width: 200px;
+            min-height: 300px;
+            max-width: 500px;
+            position: absolute;
+            z-index: 1;
+            background: radial-gradient(ellipse at right bottom, #0e4265ed 0%, #02162d5c 100%);
+            top: 300px;
+            left: 300px;
+            max-width: 300px;
+            box-shadow: inset 2px 2px 12px #031d30;
+        }
+
+        .modalHeader {
+
+            color: #009bff;
+            padding: 10px;
+            border-bottom: solid #0081ff59;
+            font-family: myFirstFont;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+        }
+
+        .modalBody {
+            padding: 10px;
+            color: #ffd200;
+            letter-spacing: 1.2px;
+
+        }
+
+        .modalBody table {
+            font-size: .8rem;
+            color: #009bff;
+            margin: 15px 0;
+            line-height: 1.6;
+
+        }
+
+        table {
+            width: 100%
+        }
+
+
+
+        .modalBody a {
+            color: #009bff;
+            font-size: .8rem;
+            text-align: right;
+        }
+
+        .modalBody a:hover {
+            color: #ffd200;
+
+        }
+
+        .closeButton {
+            background: none;
+            border: 0px;
+            background-size: 16px;
+            background-repeat: no-repeat;
+            width: 24px;
+            color: #009bff;
+            cursor: pointer;
+            font-size: 1rem;
+
+
+        }
+
+        .closeButton:hover {
+            color: #ffd200
+        }
+    </style>
+</head>
+
+<body onload="start()">
+
+    <div id="container">
+        <div id="main">
+            <div class="star"> </div>
+            <div class="star"></div>
+            <div class="star rotate45"> </div>
+            <div class="star rotate135"> </div>
+        </div>
+
+    </div>
+    <div class='inputContainer'>
+        Number of Stars: (Range: 1-1000) <input value="100" id='starCount' type='number' min="1" max="1000" />
+        <button onclick="start()">Apply</button>
+    </div>
+    <div id='sunContainer'>
+        <div id='orbit'></div>
+        <div id='sun'></div>
+        <div id='sunRed'></div>
+    </div>
+    <div id='planets'>
+
+    </div>
+    <div id='infoModal' class='infoModal'>
+        <div class='modalHeader'>
+            <table>
+                <tr>
+                    <td>Earth</td>
+                    <td style="text-align: right"><button class="closeButton">X</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class='modalBody'>
+            <div class="description">The Sun is a yellow dwarf star, a hot ball of glowing gases at
+                the heart of our solar system. Its gravity holds everything from the biggest planets to tiny debris in
+                its orbit.</div>
+            <table cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>Star Stype</td>
+                    <td>Yellow Dwart</td>
+                </tr>
+                <tr>
+                    <td>Age</td>
+                    <td>~4.5 billion years</td>
+                </tr>
+                <tr>
+                    <td>Diameter</td>
+                    <td>864,937 miles</td>
+                </tr>
+                <tr>
+                    <td>Circumference</td>
+                    <td>2.715,396</td>
+                </tr>
+                <tr>
+                    <td>Dist. from the Sun</td>
+                    <td>149.3 million km</td>
+                </tr>
+            </table>
+
+            <div><a href="#">Read More</a></div>
+        </div>
+
+    </div>
+
+
+</body>
+
+<script>
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>
