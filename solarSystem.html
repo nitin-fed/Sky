@@ -166,18 +166,19 @@
         }
 
         .infoModal {
-            display: block;
+
             border: 1px solid black;
             min-width: 200px;
             min-height: 300px;
             max-width: 500px;
             position: absolute;
             z-index: 1;
-            background: radial-gradient(ellipse at right bottom, #0e4265ed 0%, #02162d5c 100%);
+            background: radial-gradient(ellipse at right bottom, #0e4265ed 0%, #031401e8 100%);
             top: 300px;
             left: 300px;
             max-width: 300px;
-            box-shadow: inset 2px 2px 12px #031d30;
+            box-shadow: inset 2px 2px 1px #0d3c5e;
+            display: none;
         }
 
         .modalHeader {
@@ -242,7 +243,6 @@
 </head>
 
 <body onload="start()">
-
     <div id="container">
         <div id="main">
             <div class="star"> </div>
@@ -250,7 +250,6 @@
             <div class="star rotate45"> </div>
             <div class="star rotate135"> </div>
         </div>
-
     </div>
     <div class='inputContainer'>
         Number of Stars: (Range: 1-1000) <input value="100" id='starCount' type='number' min="1" max="1000" />
@@ -261,64 +260,8 @@
         <div id='sun'></div>
         <div id='sunRed'></div>
     </div>
-    <div id='planets'>
-
-    </div>
-    <div id='infoModal' class='infoModal'>
-        <div class='modalHeader'>
-            <table>
-                <tr>
-                    <td>Earth</td>
-                    <td style="text-align: right"><button class="closeButton">X</button>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class='modalBody'>
-            <div class="description">The Sun is a yellow dwarf star, a hot ball of glowing gases at
-                the heart of our solar system. Its gravity holds everything from the biggest planets to tiny debris in
-                its orbit.</div>
-            <table cellspacing="0" cellpadding="0">
-                <tr>
-                    <td>Star Stype</td>
-                    <td>Yellow Dwart</td>
-                </tr>
-                <tr>
-                    <td>Age</td>
-                    <td>~4.5 billion years</td>
-                </tr>
-                <tr>
-                    <td>Diameter</td>
-                    <td>864,937 miles</td>
-                </tr>
-                <tr>
-                    <td>Circumference</td>
-                    <td>2.715,396</td>
-                </tr>
-                <tr>
-                    <td>Dist. from the Sun</td>
-                    <td>149.3 million km</td>
-                </tr>
-            </table>
-
-            <div><a href="#">Read More</a></div>
-        </div>
-
-    </div>
-
-
+    <div id='planets'></div>
+    <div id='infoModal' class='infoModal'></div>
 </body>
-
-<script>
-
-
-
-
-
-
-
-
-
-</script>
 
 </html>
